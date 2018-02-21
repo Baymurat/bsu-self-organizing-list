@@ -107,7 +107,7 @@ describe('SelfOrganizedList', () => {
 
             expect(sol.at(2)).to.equal('Breaking Bad');
             expect(sol.at(0)).to.equal('Game of thrones');
-            expect(sol.at(1)).to.equal('Supernatural');
+            expect(sol.at(1)).to.equal('Supernatural');            
 
             expect(sol.at(999)).to.equal(null);
         });
@@ -228,6 +228,15 @@ describe('SelfOrganizedList', () => {
             expect(sol.head.next).to.equal(sol.tail);
 
         });
+
+        //added
+        it('return null if index < 0 or size <= index', () => {
+            sol.insert('Game of thrones');
+            sol.insert('Supernatural');
+
+            expect(sol.removeAt(2)).to.equal(null);
+            expect(sol.removeAt(-2)).to.equal(null);
+        });
     });
 
     describe('#reorganize', () => {
@@ -255,7 +264,7 @@ describe('SelfOrganizedList', () => {
             expect(sol.tail.data).to.equal('Supernatural');
 
             sol.reorganize('Game of thrones');
-
+            
             expect(sol.head.data).to.equal('Game of thrones');
             expect(sol.tail.prev.data).to.equal('Breaking Bad');
             expect(sol.tail.data).to.equal('Supernatural');
